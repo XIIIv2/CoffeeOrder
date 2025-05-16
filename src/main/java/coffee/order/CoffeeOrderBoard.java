@@ -1,5 +1,6 @@
 package coffee.order;
 
+import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
@@ -27,6 +28,23 @@ public class CoffeeOrderBoard {
         Order order = orders.remove();
         logger.debug("Delivering order: {}", order);
         return order;
+    }
+
+    public Order deliver(int id) throws IndexOutOfBoundsException {
+        if (orders.isEmpty()) {
+            throw new IndexOutOfBoundsException("Can't deliver from empty queue");
+        }
+        Optional<Order> order = orders.stream()
+                .filter(o -> o.getId() == id)
+                .findFirst();
+
+        if (order.isEmpty()) {
+            throw new IndexOutOfBoundsException("Order with ID " + id + " doesn't exists.");
+        }
+        Order o = order.get();
+        orders.remove(o);
+        logger.debug("Delivering order by id ({}): {}", id, o);
+        return o;
     }
 
     public void draw() {

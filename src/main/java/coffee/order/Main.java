@@ -18,12 +18,20 @@ public class Main {
             logger.error("Error", e);
         }
 
+        try {
+            coffeeOrderBoard.deliver(39);
+        } catch (IndexOutOfBoundsException e) {
+            logger.error("Error", e);
+        }
+
+        coffeeOrderBoard.add("John Doe");
         coffeeOrderBoard.add("Jane Doe");
         coffeeOrderBoard.add("Bob Smith");
         coffeeOrderBoard.add("Alen");
         coffeeOrderBoard.add("Yoda");
 
         System.out.println("Delivered: " + coffeeOrderBoard.deliver());
+        System.out.println("Delivered: " + coffeeOrderBoard.deliver(3));
         System.out.println("Delivered: " + coffeeOrderBoard.deliver());
 
         coffeeOrderBoard.add("Obi-van");

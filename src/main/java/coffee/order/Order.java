@@ -1,5 +1,7 @@
 package coffee.order;
 
+import java.util.Comparator;
+
 public class Order implements Comparable<Order> {
 
     private final int id;
@@ -20,7 +22,12 @@ public class Order implements Comparable<Order> {
 
     @Override
     public int compareTo(Order order) {
-        return id - order.getId();
+        if (id == order.getId()) {
+            return 0;
+        } else if (id > order.getId()) {
+            return 1;
+        }
+        return -1;
     }
 
     @Override

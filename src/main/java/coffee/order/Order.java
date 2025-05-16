@@ -1,7 +1,5 @@
 package coffee.order;
 
-import java.util.Comparator;
-
 public class Order implements Comparable<Order> {
 
     private final int id;
